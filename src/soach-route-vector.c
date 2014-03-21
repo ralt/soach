@@ -6,7 +6,7 @@ void SOACH_route_vector_init(struct SOACH_route_vector *vector, int capacity)
 	vector->capacity = capacity;
 	vector->routes = malloc(sizeof(struct SOACH_route) * vector->capacity);
 	if (vector->routes == NULL) {
-		printf("%s\n", strerror(errno));
+		fprintf(stderr, "%s\n", strerror(errno));
 		exit(EXIT_FAILURE);
 	}
 	if (vector->routes == NULL) {
@@ -34,7 +34,7 @@ struct SOACH_route *SOACH_route_vector_get(struct SOACH_route_vector *vector,
 {
 	if (index < 0 || index >= vector->size) {
 		printf("Out of bounds\n");
-		exit(1);
+		exit(EXIT_FAILURE);
 	}
 	return vector->routes[index];
 }

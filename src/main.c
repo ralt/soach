@@ -13,14 +13,26 @@ int main(int argc, char* argv[])
 		return EXIT_FAILURE;
 	}
 
-	struct SOACH_route_vector* routes = NULL;
+	struct SOACH_route_vector* routes =
+		malloc(sizeof(struct SOACH_route_vector));
+	if (routes == NULL) {
+		fprintf(stderr, "%s\n", strerror(errno));
+		return EXIT_FAILURE;
+	}
+
 	SOACH_route_vector_init(routes, DEFAULT_ROUTES_CAPACITY);
 
 	if (!SOACH_conf_read(fvalue, routes)) {
 		return EXIT_FAILURE;
 	}
 
-	fprintf(stdout, "%s\n", fvalue);
+	for (int i = 0; i < routes->size; i++) {
+		struct SOACH_route route = *SOACH_route_vector_get(routes, i);
+		fprintf(stdout, "Route: %s, Service: %s\n", route.route,
+				route.service);
+	}
+
+	SOACH_route_vector_free(routes);
 
 	return EXIT_SUCCESS;
 }

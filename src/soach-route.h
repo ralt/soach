@@ -1,3 +1,5 @@
+#include <stdlib.h>
+
 #ifndef SOACH_ROUTE
 #define SOACH_ROUTE
 

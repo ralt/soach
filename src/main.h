@@ -2,6 +2,8 @@
 #include <unistd.h>
 #include <stdbool.h>
 #include <stdio.h>
+#include <errno.h>
+#include <string.h>
 
 #include "soach-route.h"
 #include "soach-route-vector.h"
